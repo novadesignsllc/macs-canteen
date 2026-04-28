@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mr. Mac's Canteen — Milford & Monroe, CT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,800&family=Permanent+Marker&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Nunito', sans-serif; background: #FEFEFE; color: #1A1A1A; overflow-x: hidden; }
+
+    :root {
+      --red: #D72638;
+      --red-dark: #A81E2B;
+      --yellow: #FFB703;
+      --dark: #111214;
+      --dark2: #1E2023;
+      --cream: #FFF9F0;
+      --white: #FFFFFF;
+      --gray-light: #F4F3F0;
+      --gray: #E4E0DA;
+      --muted: #737373;
+      --radius: 16px;
+      --radius-lg: 24px;
+      --shadow: 0 4px 28px rgba(0,0,0,0.08);
+      --shadow-hover: 0 12px 48px rgba(0,0,0,0.16);
+    }
+
+    /* ============================
+       NAV
+    ============================ */
+    nav {
+      position: sticky; top: 0; z-index: 200;
+      background: var(--dark);
+      height: 70px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 6%;
+      box-shadow: 0 2px 24px rgba(0,0,0,0.4);
+    }
+
+    .nav-logo {
+      display: flex; align-items: center;
+      text-decoration: none;
+    }
+
+    .nav-logo-text {
+      font-family: 'Permanent Marker', cursive;
+      font-size: 1.6rem;
+      color: #8B2020;
+      letter-spacing: 1px;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #AAA; text-decoration: none;
+      font-weight: 700; font-size: 0.88rem;
+      letter-spacing: 0.5px; text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--yellow); }
+
+    .nav-cta {
+      background: var(--red) !important;
+      color: white !important;
+      padding: 8px 20px !important;
+      border-radius: 100px;
+      transition: background 0.2s, transform 0.2s !important;
+    }
+
+    .nav-cta:hover { background: var(--red-dark) !important; transform: translateY(-1px); }
+
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .nav-hamburger span { display: block; width: 24px; height: 2px; background: white; border-radius: 2px; }
+
+    /* ============================
+       HERO
+    ============================ */
+    .hero {
+      background: var(--dark);
+      min-height: 92vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 80px 6%;
+      gap: 64px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -200px; left: -200px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(255,183,3,0.06) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,183,3,0.12);
+      border: 1px solid rgba(255,183,3,0.25);
+      color: var(--yellow);
+      padding: 7px 16px; border-radius: 100px;
+      font-size: 0.82rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 1.2px;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 {
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(3.2rem, 5.5vw, 5.8rem);
+      line-height: 1.02;
+      color: white;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 .highlight { color: var(--yellow); }
+    .hero h1 .highlight-red { color: var(--red); }
+
+    .hero-tagline {
+      font-size: 1.15rem; color: #999;
+      line-height: 1.65; margin-bottom: 38px;
+      max-width: 430px;
+    }
+
+    .hero-tagline strong { color: #CCC; }
+
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 52px; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 15px 34px; border-radius: 100px;
+      font-size: 0.95rem; font-weight: 800;
+      text-decoration: none; transition: all 0.22s;
+      white-space: nowrap;
+    }
+
+    .btn-red {
+      background: var(--red); color: white;
+      box-shadow: 0 4px 20px rgba(215,38,56,0.35);
+    }
+
+    .btn-red:hover { background: var(--red-dark); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(215,38,56,0.45); }
+
+    .btn-ghost {
+      background: rgba(255,255,255,0.07); color: white;
+      border: 1px solid rgba(255,255,255,0.18);
+    }
+
+    .btn-ghost:hover { background: rgba(255,255,255,0.13); transform: translateY(-2px); }
+
+    .hero-stats {
+      display: flex; gap: 36px;
+      padding-top: 36px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .stat-num {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2rem; color: var(--yellow);
+      display: block; line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.8rem; color: #666;
+      text-transform: uppercase; letter-spacing: 0.5px;
+      margin-top: 4px;
+    }
+
+    /* Hero image grid */
+    .hero-imgs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 14px;
+      position: relative; z-index: 2;
+    }
+
+    .hero-img {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--dark2);
+    }
+
+    .hero-img.tall {
+      grid-row: 1 / 3;
+      aspect-ratio: 2/3;
+    }
+
+    .hero-img.sq { aspect-ratio: 1; }
+
+    .hero-img img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      transition: transform 0.5s;
+    }
+
+    .hero-img:hover img { transform: scale(1.04); }
+
+    .hero-img-label {
+      position: absolute;
+      bottom: 14px; left: 14px;
+      background: rgba(0,0,0,0.65);
+      backdrop-filter: blur(8px);
+      color: white; font-weight: 800;
+      font-size: 0.78rem; padding: 6px 12px;
+      border-radius: 100px;
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
+
+    .hero-img { position: relative; }
+
+    /* ============================
+       SECTION SHARED STYLES
+    ============================ */
+    .section { padding: 96px 6%; }
+
+    .section-eyebrow {
+      display: inline-block;
+      font-size: 0.82rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 2px;
+      color: var(--red); margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-family: 'Fredoka One', cursive;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      line-height: 1.1; color: var(--dark);
+    }
+
+    .section-title .alt { color: var(--red); }
+
+    .section-sub {
+      margin-top: 12px;
+      font-size: 1.05rem; color: var(--muted); line-height: 1.6;
+    }
+
+    .section-header { text-align: center; margin-bottom: 56px; }
+    .section-header .section-sub { max-width: 460px; margin-left: auto; margin-right: auto; }
+
+    /* ============================
+       FEATURES / HIGHLIGHTS
+    ============================ */
+    .features { background: var(--cream); }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+    }
+
+    .feat-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      text-decoration: none;
+      transition: all 0.3s;
+      display: flex; flex-direction: column;
+    }
+
+    .feat-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); }
+
+    .feat-img {
+      height: 240px; overflow: hidden;
+      position: relative;
+    }
+
+    .feat-img img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      transition: transform 0.4s;
+    }
+
+    .feat-card:hover .feat-img img { transform: scale(1.06); }
+
+    .feat-pill {
+      position: absolute; top: 14px; left: 14px;
+      background: var(--red); color: white;
+      font-size: 0.72rem; font-weight: 800;
+      padding: 5px 12px; border-radius: 100px;
+      text-transform: uppercase; letter-spacing: 0.5px;
+    }
+
+    .feat-body { padding: 22px 24px 26px; flex: 1; display: flex; flex-direction: column; }
+
+    .feat-title {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.75rem; color: var(--dark);
+      margin-bottom: 8px;
+    }
+
+    .feat-desc { font-size: 0.93rem; color: var(--muted); line-height: 1.55; flex: 1; }
+
+    .feat-from {
+      display: flex; align-items: center; gap: 6px;
+      margin-top: 18px;
+      font-weight: 800; font-size: 0.92rem; color: var(--red);
+    }
+
+    /* ============================
+       MENU
+    ============================ */
+    .menu-section { background: white; }
+
+    .menu-tabs {
+      display: flex; gap: 10px;
+      justify-content: center; flex-wrap: wrap;
+      margin-bottom: 44px;
+    }
+
+    .tab-btn {
+      padding: 9px 22px; border-radius: 100px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700; font-size: 0.88rem;
+      cursor: pointer; border: 2px solid var(--gray);
+      background: white; color: var(--muted);
+      transition: all 0.2s;
+    }
+
+    .tab-btn:hover { border-color: var(--red); color: var(--red); }
+    .tab-btn.active { background: var(--red); color: white; border-color: var(--red); }
+
+    .menu-panel { display: none; }
+    .menu-panel.active {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 12px;
+    }
+
+    .menu-item {
+      display: flex; justify-content: space-between; align-items: start;
+      gap: 12px; padding: 14px 18px;
+      background: var(--gray-light); border-radius: 12px;
+      transition: background 0.15s;
+    }
+
+    .menu-item:hover { background: #ECEAE6; }
+
+    .mi-name { font-weight: 700; font-size: 0.92rem; color: var(--dark); }
+    .mi-note { font-size: 0.78rem; color: var(--muted); margin-top: 3px; line-height: 1.4; }
+
+    .mi-price {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.05rem; color: var(--red);
+      white-space: nowrap; flex-shrink: 0;
+    }
+
+    .menu-note {
+      grid-column: 1 / -1;
+      background: rgba(215,38,56,0.06);
+      border: 1px solid rgba(215,38,56,0.15);
+      border-radius: 12px; padding: 14px 18px;
+      font-size: 0.85rem; color: var(--muted);
+    }
+
+    /* ============================
+       SHAKES
+    ============================ */
+    .shakes { background: var(--dark); overflow: hidden; position: relative; }
+
+    .shakes::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 60% 50%, rgba(255,183,3,0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .shakes-inner {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+      position: relative; z-index: 1;
+    }
+
+    .shakes .section-eyebrow { color: var(--yellow); }
+    .shakes .section-title { color: white; }
+    .shakes .section-title .alt { color: var(--yellow); }
+
+    .shakes-desc { font-size: 1.05rem; color: #999; line-height: 1.65; margin: 16px 0 28px; }
+
+    .flavor-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 36px; }
+
+    .chip {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #DDD; padding: 7px 15px;
+      border-radius: 100px; font-size: 0.82rem; font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .chip:hover { background: rgba(255,183,3,0.15); border-color: rgba(255,183,3,0.3); color: var(--yellow); }
+
+    .shakes-photo {
+      border-radius: var(--radius-lg); overflow: hidden;
+      aspect-ratio: 4/5;
+    }
+
+    .shakes-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* ============================
+       LOCATIONS
+    ============================ */
+    .locations { background: var(--cream); }
+
+    .locs-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 26px;
+    }
+
+    .loc-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .loc-top {
+      background: var(--dark);
+      padding: 28px 32px;
+      position: relative;
+    }
+
+    .loc-top::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at top right, rgba(215,38,56,0.2) 0%, transparent 65%);
+    }
+
+    .loc-badge {
+      display: inline-block;
+      background: var(--red); color: white;
+      font-size: 0.72rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 1px;
+      padding: 5px 12px; border-radius: 100px;
+      margin-bottom: 10px; position: relative; z-index: 1;
+    }
+
+    .loc-name {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.9rem; color: white;
+      position: relative; z-index: 1;
+    }
+
+    .loc-body { padding: 28px 32px; }
+
+    .loc-row {
+      display: flex; align-items: flex-start; gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .loc-icon {
+      width: 38px; height: 38px; flex-shrink: 0;
+      background: var(--gray-light); border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+
+    .loc-label { font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: var(--muted); margin-bottom: 3px; }
+
+    .loc-value { font-size: 0.97rem; font-weight: 600; color: var(--dark); line-height: 1.5; }
+    .loc-value a { color: var(--red); text-decoration: none; font-size: 1.05rem; font-weight: 800; }
+    .loc-value a:hover { text-decoration: underline; }
+
+    .loc-hiring {
+      margin-top: 4px;
+      background: #E8F5E9; color: #2E7D32;
+      border-radius: 12px; padding: 12px 18px;
+      font-size: 0.88rem; font-weight: 800;
+      display: flex; align-items: center; gap: 8px;
+      text-decoration: none;
+    }
+
+    .loc-hiring:hover { background: #C8E6C9; }
+
+    /* ============================
+       FOOD STRIP
+    ============================ */
+    .food-strip {
+      background: var(--red);
+      padding: 22px 0;
+      overflow: hidden;
+    }
+
+    .strip-track {
+      display: flex; gap: 0;
+      animation: marquee 20s linear infinite;
+      white-space: nowrap;
+    }
+
+    .strip-item {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.1rem; color: rgba(255,255,255,0.9);
+      padding: 0 32px;
+      flex-shrink: 0;
+    }
+
+    .strip-dot { color: rgba(255,255,255,0.4); }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ============================
+       FOOTER
+    ============================ */
+    footer {
+      background: var(--dark);
+      padding: 64px 6% 32px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 56px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 32px;
+    }
+
+    .footer-brand-tagline {
+      font-size: 0.92rem; color: #777;
+      line-height: 1.6; margin: 14px 0 24px;
+    }
+
+    .social-row { display: flex; gap: 10px; }
+
+    .social-btn {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: rgba(255,255,255,0.07);
+      display: flex; align-items: center; justify-content: center;
+      color: #AAA; text-decoration: none;
+      font-weight: 800; font-size: 0.82rem;
+      transition: all 0.2s;
+    }
+
+    .social-btn:hover { background: var(--red); color: white; }
+
+    .footer-col h4 {
+      font-family: 'Fredoka One', cursive;
+      color: white; font-size: 1.05rem;
+      margin-bottom: 16px;
+    }
+
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+
+    .footer-col a {
+      color: #777; text-decoration: none;
+      font-size: 0.88rem; font-weight: 600;
+      transition: color 0.2s;
+    }
+
+    .footer-col a:hover { color: var(--yellow); }
+
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      color: #555; font-size: 0.82rem; flex-wrap: wrap; gap: 12px;
+    }
+
+    /* ============================
+       RESPONSIVE
+    ============================ */
+    @media (max-width: 960px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto; padding: 72px 6%;
+        text-align: center;
+      }
+      .hero-tagline { margin-left: auto; margin-right: auto; }
+      .hero-btns { justify-content: center; }
+      .hero-stats { justify-content: center; }
+      .hero-imgs { display: none; }
+      .features-grid { grid-template-columns: 1fr; max-width: 500px; margin: 0 auto; }
+      .shakes-inner { grid-template-columns: 1fr; }
+      .shakes-photo { display: none; }
+      .locs-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+    }
+
+    @media (max-width: 600px) {
+      .section { padding: 72px 5%; }
+      .hero { padding: 60px 5%; }
+      .hero h1 { font-size: 2.8rem; }
+      .hero-stats { flex-wrap: wrap; gap: 24px; }
+      .menu-panel.active { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-text">MR MAC'S CANTEEN</div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#shakes">Shakes</a></li>
+    <li><a href="#locations">Locations</a></li>
+    <li><a href="https://www.mrmacscanteen.com/food-truck.html" target="_blank">Food Truck</a></li>
+    <li><a href="https://www.mrmacscanteen.com/employment.html" target="_blank" class="nav-cta">We're Hiring!</a></li>
+  </ul>
+  <div class="nav-hamburger" id="menuToggle">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <div class="hero-badge">📍 Milford &amp; Monroe, Connecticut</div>
+    <h1>
+      Big Flavors.<br>
+      <span class="highlight">Good Times.</span><br>
+      <span class="highlight-red">Real Food.</span>
+    </h1>
+    <p class="hero-tagline">
+      Burgers, hot dogs &amp; breakfast built for real appetites.
+      <strong>A unique experience in fast food</strong> — served with a smile since day one.
+    </p>
+    <div class="hero-btns">
+      <a href="#menu" class="btn btn-red">See the Full Menu &rarr;</a>
+      <a href="#locations" class="btn btn-ghost">Find a Location</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <span class="stat-num">2</span>
+        <div class="stat-label">Locations</div>
+      </div>
+      <div>
+        <span class="stat-num">20+</span>
+        <div class="stat-label">Shake Flavors</div>
+      </div>
+      <div>
+        <span class="stat-num">7am</span>
+        <div class="stat-label">Open Daily</div>
+      </div>
+      <div>
+        <span class="stat-num">$3.25</span>
+        <div class="stat-label">Starts From</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-imgs">
+    <div class="hero-img tall">
+      <img src="https://www.mrmacscanteen.com/uploads/8/5/7/8/85784574/one-burger_orig.jpg" alt="Mr. Mac's Burger" loading="eager">
+      <span class="hero-img-label">🍔 Burgers</span>
+    </div>
+    <div class="hero-img sq">
+      <img src="https://www.mrmacscanteen.com/uploads/8/5/7/8/85784574/two-hotdogs_orig.jpg" alt="Hot Dogs" loading="eager">
+      <span class="hero-img-label">🌭 Hot Dogs</span>
+    </div>
+    <div class="hero-img sq">
+      <img src="https://www.mrmacscanteen.com/uploads/8/5/7/8/85784574/eggs_orig.jpg" alt="Breakfast" loading="eager">
+      <span class="hero-img-label">🍳 Breakfast</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOD STRIP MARQUEE -->
+<div class="food-strip">
+  <div class="strip-track">
+    <span class="strip-item">🍔 Freak Burger</span>
+    <span class="strip-item strip-dot">·</span>
+    <span class="strip-item">🌭 Chili-Cheese Dog</span>
+    <span class="strip-item strip-dot">·</span>
+    <span class="strip-item">🍳 Breakfast Platter</span>
+    <span class="strip-item strip-dot">·</span>
+    <span class="strip-item">🥤 Hand-Spun Milkshakes</span>
+    <span class="strip-item strip-dot">·</span>
+    <span class="strip-item">🧅 Fresh Onion Rings</span>
+    <span class="strip-item strip-dot">·</span>
+    <span class="strip-item">🦐 Fried Shrimp</span>
+    <span class="strip-item strip-dot">·</span>
+    <span class="strip-item">☕ Cappuccino</span>
+    <span class="strip-item strip-dot">·</span>
+    <span class="strip-item">🥩 Bison Burger</span>
+    <span class="strip-item strip-dot">·</span>
+    <span class="strip-item">🐟 Fish &amp; Chips</span>
+    <span class="strip-item strip-dot">·</span>
+    <!-- duplicate for seamless loop -->
+    <span class="strip-item">🍔 Freak Burger</span>
+    <span class="strip-item strip-dot">·</span>
+    <span class="strip-item">🌭 Chili-Cheese Dog</span>
+    <span class="strip-item strip-dot">·</span>
+    <span class="strip-item">🍳 Breakfast Platter</span>
+    <span class="strip-item strip-dot">·</span>
+    <span class="strip-item">🥤 Hand-Spun Milkshakes</span>
+    <span class="strip-item strip-dot">·</span>
+    <span class="strip-item">🧅 Fresh Onion Rings</span>
+    <span class="strip-item strip-dot">·</span>
+    <span class="strip-item">🦐 Fried Shrimp</span>
+    <span class="strip-item strip-dot">·</span>
+    <span class="strip-item">☕ Cappuccino</span>
+    <span class="strip-item strip-dot">·</span>
+    <span class="strip-item">🥩 Bison Burger</span>
+    <span class="strip-item strip-dot">·</span>
+    <span class="strip-item">🐟 Fish &amp; Chips</span>
+    <span class="strip-item strip-dot">·</span>
+  </div>
+</div>
+
+<!-- WHAT WE DO BEST -->
+<section class="section features">
+  <div class="section-header">
+    <span class="section-eyebrow">What We Do Best</span>
+    <h2 class="section-title">Your Favorites, <span class="alt">Done Right</span></h2>
+    <p class="section-sub">Every order made fresh. No shortcuts. Just honest, delicious food the way it should be.</p>
+  </div>
+  <div class="features-grid">
+    <a href="#menu" class="feat-card" data-tab="burgers">
+      <div class="feat-img">
+        <img src="https://www.mrmacscanteen.com/uploads/8/5/7/8/85784574/one-burger_orig.jpg" alt="Mr. Mac's Burgers">
+        <span class="feat-pill">Fan Favorite</span>
+      </div>
+      <div class="feat-body">
+        <div class="feat-title">🍔 Burgers</div>
+        <div class="feat-desc">Classic singles, doubles, the legendary Freak Burger, bison, turkey, and veggie. Loaded with free toppings — your way, every time.</div>
+        <div class="feat-from">From $3.75 &rarr;</div>
+      </div>
+    </a>
+    <a href="#menu" class="feat-card" data-tab="hotdogs">
+      <div class="feat-img">
+        <img src="https://www.mrmacscanteen.com/uploads/8/5/7/8/85784574/two-hotdogs_orig.jpg" alt="Mr. Mac's Hot Dogs">
+        <span class="feat-pill">CT Classic</span>
+      </div>
+      <div class="feat-body">
+        <div class="feat-title">🌭 Hot Dogs</div>
+        <div class="feat-desc">Dog with the Works, loaded Chili-Cheese, the classic Red Hot Dog — piled high with mustard, relish, onions, kraut, and bacon bits.</div>
+        <div class="feat-from">From $3.75 &rarr;</div>
+      </div>
+    </a>
+    <a href="#menu" class="feat-card" data-tab="breakfast">
+      <div class="feat-img">
+        <img src="https://www.mrmacscanteen.com/uploads/8/5/7/8/85784574/eggs_orig.jpg" alt="Mr. Mac's Breakfast">
+        <span class="feat-pill">Rise &amp; Shine</span>
+      </div>
+      <div class="feat-body">
+        <div class="feat-title">🍳 Breakfast</div>
+        <div class="feat-desc">Fluffy omelets, egg sandwiches, hearty platters, French toast sticks, and fresh coffee — hot and ready from 7am every day.</div>
+        <div class="feat-from">From $3.25 &rarr;</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="section menu-section" id="menu">
+  <div class="section-header">
+    <span class="section-eyebrow">The Menu</span>
+    <h2 class="section-title">Something for <span class="alt">Everyone</span></h2>
+    <p class="section-sub">Prices subject to CT sales tax and may change.</p>
+  </div>
+
+  <div class="menu-tabs">
+    <button class="tab-btn active" data-panel="tab-breakfast">🍳 Breakfast</button>
+    <button class="tab-btn" data-panel="tab-burgers">🍔 Burgers</button>
+    <button class="tab-btn" data-panel="tab-hotdogs">🌭 Hot Dogs</button>
+    <button class="tab-btn" data-panel="tab-sandwiches">🥪 Sandwiches</button>
+    <button class="tab-btn" data-panel="tab-sides">🍟 Sides</button>
+    <button class="tab-btn" data-panel="tab-seafood">🐟 Seafood</button>
+    <button class="tab-btn" data-panel="tab-drinks">🥤 Drinks</button>
+  </div>
+
+  <!-- BREAKFAST -->
+  <div id="tab-breakfast" class="menu-panel active">
+    <div class="menu-item"><div><div class="mi-name">Egg Sandwich</div></div><div class="mi-price">$3.25</div></div>
+    <div class="menu-item"><div><div class="mi-name">Egg &amp; Cheese</div></div><div class="mi-price">$3.50</div></div>
+    <div class="menu-item"><div><div class="mi-name">Egg w/ Ham, Bacon or Sausage</div></div><div class="mi-price">$3.75</div></div>
+    <div class="menu-item"><div><div class="mi-name">Egg &amp; Cheese w/ Meat</div></div><div class="mi-price">$4.50</div></div>
+    <div class="menu-item"><div><div class="mi-name">Omelet (3 eggs)</div></div><div class="mi-price">$5.50</div></div>
+    <div class="menu-item"><div><div class="mi-name">Omelet with Cheese</div></div><div class="mi-price">$7.00</div></div>
+    <div class="menu-item"><div><div class="mi-name">Omelet w/ Cheese, Veggies &amp; Meat</div></div><div class="mi-price">$10.50</div></div>
+    <div class="menu-item"><div><div class="mi-name">Western Omelet</div></div><div class="mi-price">$9.25</div></div>
+    <div class="menu-item"><div><div class="mi-name">2 Eggs on a Plate (any style)</div></div><div class="mi-price">$3.25</div></div>
+    <div class="menu-item"><div><div class="mi-name">Breakfast Platter</div><div class="mi-note">2 eggs, ham/bacon/sausage, hash brown &amp; toast</div></div><div class="mi-price">$8.00</div></div>
+    <div class="menu-item"><div><div class="mi-name">Hash Browns</div></div><div class="mi-price">$2.00</div></div>
+    <div class="menu-item"><div><div class="mi-name">French Toast Sticks</div></div><div class="mi-price">$3.25</div></div>
+    <div class="menu-item"><div><div class="mi-name">Steak and Egg</div></div><div class="mi-price">$7.75</div></div>
+    <div class="menu-item"><div><div class="mi-name">Steak, Egg &amp; Cheese</div></div><div class="mi-price">$9.50</div></div>
+    <div class="menu-item"><div><div class="mi-name">Which Came First</div><div class="mi-note">Bacon, egg &amp; cheese with a chicken patty</div></div><div class="mi-price">$9.50</div></div>
+    <div class="menu-item"><div><div class="mi-name">BEC Cheeseburger</div></div><div class="mi-price">$8.95</div></div>
+    <div class="menu-item"><div><div class="mi-name">Toast</div></div><div class="mi-price">$2.00</div></div>
+    <div class="menu-item"><div><div class="mi-name">English Muffin</div></div><div class="mi-price">$2.00</div></div>
+    <div class="menu-item"><div><div class="mi-name">Portuguese Roll</div></div><div class="mi-price">$2.00</div></div>
+    <div class="menu-item"><div><div class="mi-name">Muffin</div></div><div class="mi-price">$2.85</div></div>
+    <div class="menu-item"><div><div class="mi-name">Donut</div></div><div class="mi-price">$2.25</div></div>
+    <div class="menu-item"><div><div class="mi-name">Pastry</div></div><div class="mi-price">$2.85</div></div>
+  </div>
+
+  <!-- BURGERS -->
+  <div id="tab-burgers" class="menu-panel">
+    <div class="menu-item"><div><div class="mi-name">Hamburger</div></div><div class="mi-price">$3.75</div></div>
+    <div class="menu-item"><div><div class="mi-name">Cheeseburger</div></div><div class="mi-price">$4.50</div></div>
+    <div class="menu-item"><div><div class="mi-name">Double Hamburger</div></div><div class="mi-price">$5.50</div></div>
+    <div class="menu-item"><div><div class="mi-name">Double Cheeseburger</div></div><div class="mi-price">$5.75</div></div>
+    <div class="menu-item"><div><div class="mi-name">1/3 lb. Hamburger</div></div><div class="mi-price">$5.50</div></div>
+    <div class="menu-item"><div><div class="mi-name">1/3 lb. Cheeseburger</div></div><div class="mi-price">$5.75</div></div>
+    <div class="menu-item"><div><div class="mi-name">Bison Burger</div></div><div class="mi-price">$7.25</div></div>
+    <div class="menu-item"><div><div class="mi-name">Turkey Burger</div></div><div class="mi-price">$6.75</div></div>
+    <div class="menu-item"><div><div class="mi-name">Veggie Burger</div></div><div class="mi-price">$6.75</div></div>
+    <div class="menu-item"><div><div class="mi-name">Freak Burger</div></div><div class="mi-price">$9.25</div></div>
+    <div class="menu-item"><div><div class="mi-name">Patty Melt</div></div><div class="mi-price">$6.50</div></div>
+    <div class="menu-note">Free toppings: Lettuce, Tomato, Raw Onions, Pickles, Ketchup, Mayo, Mustard &amp; Relish</div>
+  </div>
+
+  <!-- HOT DOGS -->
+  <div id="tab-hotdogs" class="menu-panel">
+    <div class="menu-item"><div><div class="mi-name">Dog w/ Works</div></div><div class="mi-price">$3.75</div></div>
+    <div class="menu-item"><div><div class="mi-name">Cheese Dog</div></div><div class="mi-price">$4.50</div></div>
+    <div class="menu-item"><div><div class="mi-name">Chili Dog</div></div><div class="mi-price">$4.50</div></div>
+    <div class="menu-item"><div><div class="mi-name">Chili-Cheese Dog</div></div><div class="mi-price">$5.25</div></div>
+    <div class="menu-item"><div><div class="mi-name">Red Hot Dog</div></div><div class="mi-price">$5.25</div></div>
+    <div class="menu-note">Toppings include: Mustard, Relish, Raw Onions, Kraut &amp; Bacon Bits</div>
+  </div>
+
+  <!-- SANDWICHES -->
+  <div id="tab-sandwiches" class="menu-panel">
+    <div class="menu-item"><div><div class="mi-name">Chicken Patty</div></div><div class="mi-price">$5.50</div></div>
+    <div class="menu-item"><div><div class="mi-name">Buffalo Chicken Patty</div></div><div class="mi-price">$6.75</div></div>
+    <div class="menu-item"><div><div class="mi-name">Grilled Chicken</div></div><div class="mi-price">$5.75</div></div>
+    <div class="menu-item"><div><div class="mi-name">Chicken Club</div><div class="mi-note">Chicken patty, bacon, cheese, L/T/M</div></div><div class="mi-price">$7.25</div></div>
+    <div class="menu-item"><div><div class="mi-name">B.L.T.</div></div><div class="mi-price">$6.25</div></div>
+    <div class="menu-item"><div><div class="mi-name">Grilled Cheese</div></div><div class="mi-price">$3.75</div></div>
+    <div class="menu-item"><div><div class="mi-name">Grilled Cheese w/ Tomato</div></div><div class="mi-price">$3.95</div></div>
+    <div class="menu-item"><div><div class="mi-name">Grilled Cheese w/ Bacon or Ham</div></div><div class="mi-price">$4.95</div></div>
+    <div class="menu-item"><div><div class="mi-name">Grilled Cheese w/ Bacon or Ham &amp; Tomato</div></div><div class="mi-price">$5.25</div></div>
+    <div class="menu-item"><div><div class="mi-name">Tuna</div></div><div class="mi-price">$4.95</div></div>
+    <div class="menu-item"><div><div class="mi-name">Tuna Melt</div></div><div class="mi-price">$5.75</div></div>
+    <div class="menu-item"><div><div class="mi-name">Chicken Salad Sandwich</div></div><div class="mi-price">$4.50</div></div>
+    <div class="menu-item"><div><div class="mi-name">Sliced Turkey Breast</div></div><div class="mi-price">$6.75</div></div>
+    <div class="menu-item"><div><div class="mi-name">Ham &amp; Cheese</div></div><div class="mi-price">$4.95</div></div>
+    <div class="menu-item"><div><div class="mi-name">Salami &amp; Cheese</div></div><div class="mi-price">$4.95</div></div>
+    <div class="menu-item"><div><div class="mi-name">Combination (Ham, Salami &amp; Cheese)</div></div><div class="mi-price">$5.75</div></div>
+    <div class="menu-item"><div><div class="mi-name">Pastrami &amp; Swiss</div><div class="mi-note">Milford only</div></div><div class="mi-price">$6.25</div></div>
+    <div class="menu-item"><div><div class="mi-name">Philly Cheese Steak</div></div><div class="mi-price">$7.95</div></div>
+    <div class="menu-item"><div><div class="mi-name">Pepper &amp; Egg Grinder</div></div><div class="mi-price">$5.50</div></div>
+    <div class="menu-item"><div><div class="mi-name">Boneless BBQ Rib Grinder</div></div><div class="mi-price">$4.95</div></div>
+    <div class="menu-item"><div><div class="mi-name">Liver, Bacon &amp; Onion Grinder</div></div><div class="mi-price">$5.50</div></div>
+    <div class="menu-note">Served on your choice of: White, Wheat, Rye, Soft Roll, English Muffin, or Portuguese Roll</div>
+  </div>
+
+  <!-- SIDES -->
+  <div id="tab-sides" class="menu-panel">
+    <div class="menu-item"><div><div class="mi-name">French Fries</div></div><div class="mi-price">$3.25 / $3.95</div></div>
+    <div class="menu-item"><div><div class="mi-name">Fresh-Made Onion Rings</div></div><div class="mi-price">$5.75</div></div>
+    <div class="menu-item"><div><div class="mi-name">Sweet Potato Fries</div><div class="mi-note">Monroe only</div></div><div class="mi-price">$3.75</div></div>
+    <div class="menu-item"><div><div class="mi-name">Tater Tots</div></div><div class="mi-price">$3.75</div></div>
+    <div class="menu-item"><div><div class="mi-name">Mozzarella Sticks</div></div><div class="mi-price">$4.75</div></div>
+    <div class="menu-item"><div><div class="mi-name">Zucchini Sticks</div></div><div class="mi-price">$5.50</div></div>
+    <div class="menu-item"><div><div class="mi-name">Chicken Tenders</div></div><div class="mi-price">$5.25</div></div>
+    <div class="menu-item"><div><div class="mi-name">Buffalo Chicken Tenders</div></div><div class="mi-price">$6.75</div></div>
+    <div class="menu-item"><div><div class="mi-name">Mac 'n Cheese Wedges</div></div><div class="mi-price">$4.75</div></div>
+    <div class="menu-item"><div><div class="mi-name">Garden Salad</div></div><div class="mi-price">$4.95</div></div>
+    <div class="menu-item"><div><div class="mi-name">Garden Salad w/ Grilled Chicken</div></div><div class="mi-price">$7.95</div></div>
+    <div class="menu-item"><div><div class="mi-name">Cole Slaw</div></div><div class="mi-price">$2.25</div></div>
+    <div class="menu-item"><div><div class="mi-name">Soup of the Day</div></div><div class="mi-price">Varies</div></div>
+    <div class="menu-item"><div><div class="mi-name">Cookies / Brownies</div></div><div class="mi-price">$2.25</div></div>
+  </div>
+
+  <!-- SEAFOOD -->
+  <div id="tab-seafood" class="menu-panel">
+    <div class="menu-item"><div><div class="mi-name">Fish Sandwich</div></div><div class="mi-price">$6.95</div></div>
+    <div class="menu-item"><div><div class="mi-name">Piece of Fish</div></div><div class="mi-price">$6.25</div></div>
+    <div class="menu-item"><div><div class="mi-name">Fish &amp; Chips</div></div><div class="mi-price">$8.25</div></div>
+    <div class="menu-item"><div><div class="mi-name">Clam Strip Roll</div></div><div class="mi-price">$6.25</div></div>
+    <div class="menu-item"><div><div class="mi-name">Fried Clam Strips</div></div><div class="mi-price">$5.95</div></div>
+    <div class="menu-item"><div><div class="mi-name">Clam Strip Platter</div></div><div class="mi-price">$7.95</div></div>
+    <div class="menu-item"><div><div class="mi-name">Fried Shrimp</div></div><div class="mi-price">$6.95</div></div>
+    <div class="menu-item"><div><div class="mi-name">Shrimp Platter</div></div><div class="mi-price">$8.95</div></div>
+    <div class="menu-item"><div><div class="mi-name">Fried Scallops</div></div><div class="mi-price">$6.95</div></div>
+    <div class="menu-item"><div><div class="mi-name">Scallop Platter</div></div><div class="mi-price">$8.95</div></div>
+    <div class="menu-note">Fish items include: Lettuce, Tomato, Tartar Sauce &amp; Lemon</div>
+  </div>
+
+  <!-- DRINKS -->
+  <div id="tab-drinks" class="menu-panel">
+    <div class="menu-item"><div><div class="mi-name">Fountain Drink — Small</div><div class="mi-note">Pepsi, Diet Pepsi, Sierra Mist, Root Beer, Dr. Pepper, Mountain Dew, Iced Tea, Pink Lemonade</div></div><div class="mi-price">$2.25</div></div>
+    <div class="menu-item"><div><div class="mi-name">Fountain Drink — Medium</div></div><div class="mi-price">$2.75</div></div>
+    <div class="menu-item"><div><div class="mi-name">Fountain Drink — Large</div></div><div class="mi-price">$3.50</div></div>
+    <div class="menu-item"><div><div class="mi-name">Milk Shake — Regular</div><div class="mi-note">20+ flavors available</div></div><div class="mi-price">$5.25</div></div>
+    <div class="menu-item"><div><div class="mi-name">Milk Shake — Large</div></div><div class="mi-price">$6.00</div></div>
+    <div class="menu-item"><div><div class="mi-name">Coffee / Decaf / Tea — Small</div></div><div class="mi-price">$2.25</div></div>
+    <div class="menu-item"><div><div class="mi-name">Coffee / Decaf / Tea — Medium</div></div><div class="mi-price">$2.75</div></div>
+    <div class="menu-item"><div><div class="mi-name">Coffee / Decaf / Tea — Large</div></div><div class="mi-price">$3.50</div></div>
+    <div class="menu-item"><div><div class="mi-name">Iced Coffee — Regular</div></div><div class="mi-price">$3.95</div></div>
+    <div class="menu-item"><div><div class="mi-name">Iced Coffee — Large</div></div><div class="mi-price">$4.50</div></div>
+    <div class="menu-item"><div><div class="mi-name">Cappuccino — Small</div></div><div class="mi-price">$2.95</div></div>
+    <div class="menu-item"><div><div class="mi-name">Cappuccino — Medium</div></div><div class="mi-price">$3.50</div></div>
+    <div class="menu-item"><div><div class="mi-name">Cappuccino — Large</div></div><div class="mi-price">$3.95</div></div>
+    <div class="menu-item"><div><div class="mi-name">Hot Chocolate — Small</div></div><div class="mi-price">$2.50</div></div>
+    <div class="menu-item"><div><div class="mi-name">Hot Chocolate — Medium</div></div><div class="mi-price">$2.95</div></div>
+    <div class="menu-item"><div><div class="mi-name">Hot Chocolate — Large</div></div><div class="mi-price">$3.75</div></div>
+    <div class="menu-item"><div><div class="mi-name">Orange Juice (1 pint)</div></div><div class="mi-price">$2.60</div></div>
+    <div class="menu-item"><div><div class="mi-name">Milk (½ pint)</div></div><div class="mi-price">$2.00</div></div>
+    <div class="menu-item"><div><div class="mi-name">Chocolate Milk (½ pint)</div></div><div class="mi-price">$2.00</div></div>
+  </div>
+</section>
+
+<!-- MILKSHAKES SPOTLIGHT -->
+<section class="section shakes" id="shakes">
+  <div class="shakes-inner">
+    <div>
+      <span class="section-eyebrow">Over 20 Flavors</span>
+      <h2 class="section-title">Milkshakes That'll <span class="alt">Make Your Day</span></h2>
+      <p class="shakes-desc">Hand-spun, thick, and impossibly creamy — our milkshakes are the stuff of legend. Pick your flavor, grab a straw, and taste the difference.</p>
+      <div class="flavor-chips">
+        <span class="chip">Vanilla</span>
+        <span class="chip">Chocolate</span>
+        <span class="chip">Strawberry</span>
+        <span class="chip">Banana</span>
+        <span class="chip">Cherry</span>
+        <span class="chip">Blue Raspberry</span>
+        <span class="chip">Mint</span>
+        <span class="chip">Coffee</span>
+        <span class="chip">Cupcake</span>
+        <span class="chip">Watermelon</span>
+        <span class="chip">Caramel</span>
+        <span class="chip">Pumpkin</span>
+        <span class="chip">Creamsicle</span>
+        <span class="chip">Coconut</span>
+        <span class="chip">S'Mores</span>
+        <span class="chip">Marshmallow</span>
+        <span class="chip">Pina Colada</span>
+        <span class="chip">Raspberry</span>
+      </div>
+      <a href="#locations" class="btn btn-red">Find Us &rarr;</a>
+    </div>
+    <div class="shakes-photo">
+      <img src="https://www.mrmacscanteen.com/uploads/8/5/7/8/85784574/milkshakes_orig.jpg" alt="Mr. Mac's Milkshakes">
+    </div>
+  </div>
+</section>
+
+<!-- LOCATIONS -->
+<section class="section locations" id="locations">
+  <div class="section-header">
+    <span class="section-eyebrow">Two Locations</span>
+    <h2 class="section-title">Come Find <span class="alt">Your Canteen</span></h2>
+    <p class="section-sub">Serving Milford and Monroe, Connecticut with the same great food and friendly faces.</p>
+  </div>
+  <div class="locs-grid">
+    <div class="loc-card">
+      <div class="loc-top">
+        <div class="loc-badge">Milford</div>
+        <div class="loc-name">Milford Canteen</div>
+      </div>
+      <div class="loc-body">
+        <div class="loc-row">
+          <div class="loc-icon">📍</div>
+          <div>
+            <div class="loc-label">Address</div>
+            <div class="loc-value">2004 Bridgeport Ave<br>Milford, CT 06460</div>
+          </div>
+        </div>
+        <div class="loc-row">
+          <div class="loc-icon">📞</div>
+          <div>
+            <div class="loc-label">Phone</div>
+            <div class="loc-value"><a href="tel:2038741515">(203) 874-1515</a></div>
+          </div>
+        </div>
+        <div class="loc-row">
+          <div class="loc-icon">🕐</div>
+          <div>
+            <div class="loc-label">Hours</div>
+            <div class="loc-value">Mon – Sat: 7am – 9pm<br>Sunday: 8am – 5pm</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="loc-card">
+      <div class="loc-top">
+        <div class="loc-badge">Monroe</div>
+        <div class="loc-name">Monroe Canteen</div>
+      </div>
+      <div class="loc-body">
+        <div class="loc-row">
+          <div class="loc-icon">📍</div>
+          <div>
+            <div class="loc-label">Address</div>
+            <div class="loc-value">838 Main St<br>Monroe, CT 06468</div>
+          </div>
+        </div>
+        <div class="loc-row">
+          <div class="loc-icon">📞</div>
+          <div>
+            <div class="loc-label">Phone</div>
+            <div class="loc-value"><a href="tel:2034599595">(203) 459-9595</a></div>
+          </div>
+        </div>
+        <div class="loc-row">
+          <div class="loc-icon">🕐</div>
+          <div>
+            <div class="loc-label">Hours</div>
+            <div class="loc-value">Mon – Sat: 7am – 8pm<br>Sunday: 8am – 4pm</div>
+          </div>
+        </div>
+        <a href="https://www.mrmacscanteen.com/employment.html" target="_blank" class="loc-hiring">
+          🎉 Monroe is Now Hiring — Apply Today!
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <a href="#" class="nav-logo" style="margin-bottom:14px; display:inline-flex;">
+        <div class="nav-logo-text">MR MAC'S CANTEEN</div>
+      </a>
+      <p class="footer-brand-tagline">"A Unique Experience in Fast Food!" Serving Milford &amp; Monroe, Connecticut with big flavors and friendly service every day.</p>
+      <div class="social-row">
+        <a href="https://www.facebook.com/profile.php?id=100057764015451" class="social-btn" target="_blank" rel="noopener" title="Facebook">f</a>
+        <a href="https://www.instagram.com/mrmacsmonroe/" class="social-btn" target="_blank" rel="noopener" title="Instagram">ig</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Menu</h4>
+      <ul>
+        <li><a href="#menu">Breakfast</a></li>
+        <li><a href="#menu">Burgers</a></li>
+        <li><a href="#menu">Hot Dogs</a></li>
+        <li><a href="#menu">Sandwiches</a></li>
+        <li><a href="#menu">Sides</a></li>
+        <li><a href="#menu">Seafood</a></li>
+        <li><a href="#shakes">Milkshakes</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Visit Us</h4>
+      <ul>
+        <li><a href="#locations">Milford Location</a></li>
+        <li><a href="#locations">Monroe Location</a></li>
+        <li><a href="https://www.mrmacscanteen.com/food-truck.html" target="_blank">Food Truck</a></li>
+        <li><a href="https://www.mrmacscanteen.com/car-show.html" target="_blank">Car Show</a></li>
+        <li><a href="https://www.mrmacscanteen.com/employment.html" target="_blank">Employment</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2025 Mr. Mac's Canteen &mdash; Milford &amp; Monroe, CT</span>
+    <span>Prices subject to CT sales tax and may change without notice.</span>
+  </div>
+</footer>
+
+<script>
+  // Menu tabs
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.menu-panel');
+
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBtns.forEach(b => b.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      const target = document.getElementById(btn.dataset.panel);
+      if (target) target.classList.add('active');
+    });
+  });
+
+  // Feature cards jump to correct menu tab
+  document.querySelectorAll('.feat-card[data-tab]').forEach(card => {
+    card.addEventListener('click', e => {
+      const tab = card.dataset.tab;
+      const matchBtn = document.querySelector(`.tab-btn[data-panel="tab-${tab}"]`);
+      if (matchBtn) matchBtn.click();
+    });
+  });
+</script>
+
+</body>
+</html>
